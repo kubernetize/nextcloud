@@ -32,5 +32,6 @@ EOF
 	touch /data/config/CAN_INSTALL
 fi
 
-cd /tmp
-exec /usr/bin/supervisord
+cd /
+
+exec /usr/local/sbin/httpd
