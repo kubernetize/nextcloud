@@ -11,17 +11,18 @@ RUN apk --no-cache add curl tar php8-pecl-apcu && \
     chown -R 0:0 /var/www/html
 
 # Update installation, prepare /data
+WORKDIR /var/www/html
+
 RUN \
-    chown 8080:8080 /var/www/html/.htaccess && \
+    sed -i -e '/RewriteRule.*remote.php.*\[.*R=.*\]/s,/remote.php,%{HTTP:X-Forwarded-Proto}://%{HTTP:X-Forwarded-Host}/remote.php,g' .htaccess && \
+    chown 8080:8080 .htaccess && \
     mkdir -p /data && \
-    rm -rf /var/www/html/config && \
-    ln -s /data/config /var/www/html/config && \
-    chown 8080:8080 /data
+    chown 8080:8080 /data && \
+    rm -rf config && \
+    ln -s /data/config config
 
 COPY assets/ /
 
 USER 8080
-
-WORKDIR /var/www/html
 
 CMD ["/usr/local/sbin/nextcloud"]
