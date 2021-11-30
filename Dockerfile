@@ -14,7 +14,6 @@ RUN apk --no-cache add curl tar php8-pecl-apcu php8-pecl-imagick && \
 WORKDIR /var/www/html
 
 RUN \
-    sed -i -e '/RewriteRule.*remote.php.*\[.*R=.*\]/s,/remote.php,%{HTTP:X-Forwarded-Proto}://%{HTTP:X-Forwarded-Host}/remote.php,g' .htaccess && \
     chown 8080:8080 .htaccess && \
     mkdir -p /data && \
     chown 8080:8080 /data && \

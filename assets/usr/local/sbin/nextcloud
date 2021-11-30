@@ -32,6 +32,10 @@ EOF
 	touch /data/config/CAN_INSTALL
 fi
 
+# prepare htaccess
+mkdir /tmp/nextcloud
+sed -e '/RewriteRule.*remote.php.*\[.*R=.*\]/s,/remote.php,%{HTTP:X-Forwarded-Proto}://%{HTTP:X-Forwarded-Host}/remote.php,g' .htaccess > /tmp/nextcloud/htaccess
+
 cd /
 
 exec /usr/local/sbin/httpd
