@@ -1,6 +1,6 @@
 FROM registry.lan/krichy/webhost-php8
 
-ARG NC_VER=22.2.3
+ARG NC_VER=23.0.0
 
 USER 0
 
