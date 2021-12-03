@@ -18,7 +18,8 @@ RUN \
     mkdir -p /data && \
     chown 8080:8080 /data && \
     rm -rf config && \
-    ln -s /data/config config
+    ln -s /data/config config && \
+    ln -s /data/apps apps-ext
 
 COPY assets/ /
 
