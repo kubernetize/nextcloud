@@ -38,4 +38,4 @@ sed -e '/RewriteRule.*remote.php.*\[.*R=.*\]/s,/remote.php,%{HTTP:X-Forwarded-Pr
 
 cd /
 
-exec /usr/local/sbin/httpd
+exec /usr/sbin/httpd -DFOREGROUND
