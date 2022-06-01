@@ -3,7 +3,7 @@ FROM ghcr.io/rkojedzinszky/webhost-images/php8
 LABEL org.opencontainers.image.authors "Richard Kojedzinszky <richard@kojedz.in>"
 LABEL org.opencontainers.image.source https://github.com/kubernetize/nextcloud
 
-ARG NC_VER=23.0.4
+ARG NC_VER=24.0.1
 
 USER 0
 
