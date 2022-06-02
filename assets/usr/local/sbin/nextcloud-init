@@ -33,9 +33,5 @@ EOF
 fi
 
 # prepare htaccess
-mkdir /tmp/nextcloud
+mkdir -p /tmp/nextcloud
 sed -e '/RewriteRule.*remote.php.*\[.*R=.*\]/s,/remote.php,%{HTTP:X-Forwarded-Proto}://%{HTTP:X-Forwarded-Host}/remote.php,g' .htaccess > /tmp/nextcloud/htaccess
-
-cd /
-
-exec /usr/sbin/httpd -DFOREGROUND
