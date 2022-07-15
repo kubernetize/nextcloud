@@ -27,5 +27,3 @@ RUN \
 COPY assets/ /
 
 USER 8080
-
-CMD ["/usr/local/sbin/nextcloud"]
