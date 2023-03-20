@@ -5,8 +5,8 @@ mkdir -p /data/apps
 mkdir -p /data/config
 
 if [ -f /data/config/config.php ]; then
-	php8 occ upgrade
-	php8 occ maintenance:update:htaccess
+	php81 occ upgrade
+	php81 occ maintenance:update:htaccess
 else
 	cat <<'EOF' >config/config.php
 <?php
