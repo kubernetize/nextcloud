@@ -1,14 +1,14 @@
-FROM ghcr.io/rkojedzinszky/webhost-images/php83
+FROM ghcr.io/rkojedzinszky/webhost-images/php84
 
 LABEL org.opencontainers.image.authors="Richard Kojedzinszky <richard@kojedz.in>"
 LABEL org.opencontainers.image.source=https://github.com/kubernetize/nextcloud
 
-ARG NC_VER=30.0.4
+ARG NC_VER=31.0.0
 
 USER 0
 
 # download packages & nextcloud
-RUN apk --no-cache add curl tar php83-pecl-apcu php83-pecl-imagick php83-pecl-redis && \
+RUN apk --no-cache add curl tar php84-pecl-apcu php84-pecl-imagick php84-pecl-redis && \
     mkdir -p /var/www/html && \
     curl -sL https://download.nextcloud.com/server/releases/nextcloud-${NC_VER}.tar.bz2 | tar xjf - -C /var/www/html --strip-components=1 --no-same-owner --no-same-permissions
 
