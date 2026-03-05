@@ -7,8 +7,12 @@ ARG NC_VER=33.0.0
 
 USER 0
 
+COPY assets/ /
+
 # download packages & nextcloud
-RUN apk --no-cache add curl tar php84-pecl-apcu php84-pecl-imagick php84-pecl-redis && \
+RUN phpver=$(php -r 'echo PHP_MAJOR_VERSION . PHP_MINOR_VERSION;') && \
+    for i in /etc/php/conf.d/*.ini; do ln -s "$i" "/etc/php${phpver}/conf.d/"; done && \
+    apk --no-cache add curl tar php${phpver}-pecl-apcu php${phpver}-pecl-imagick php${phpver}-pecl-redis && \
     mkdir -p /var/www/html && \
     curl -sL https://download.nextcloud.com/server/releases/nextcloud-${NC_VER}.tar.bz2 | tar xjf - -C /var/www/html --strip-components=1 --no-same-owner --no-same-permissions
 
@@ -22,7 +26,5 @@ RUN \
     rm -rf config && \
     ln -s /data/config config && \
     ln -s /data/apps apps-ext
-
-COPY assets/ /
 
 USER 8080
