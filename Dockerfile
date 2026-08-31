@@ -1,4 +1,4 @@
-FROM ghcr.io/rkojedzinszky/webhost-images/php83
+FROM ghcr.io/rkojedzinszky/webhost-images/php84
 
 LABEL org.opencontainers.image.authors="Richard Kojedzinszky <richard@kojedz.in>"
 LABEL org.opencontainers.image.source=https://github.com/kubernetize/nextcloud
