@@ -11,8 +11,9 @@ COPY assets/ /
 
 # download packages & nextcloud
 RUN phpver=$(php -r 'echo PHP_MAJOR_VERSION . PHP_MINOR_VERSION;') && \
-    for i in /etc/php/conf.d/*.ini; do ln -s "$i" "/etc/php${phpver}/conf.d/"; done && \
     apk --no-cache add curl tar php${phpver}-pecl-apcu php${phpver}-pecl-imagick php${phpver}-pecl-redis && \
+    rm -rf "/etc/php${phpver}/conf.d" && \
+    ln -sf /etc/php/conf.d "/etc/php${phpver}/conf.d" && \
     mkdir -p /var/www/html && \
     curl -sL https://download.nextcloud.com/server/releases/nextcloud-${NC_VER}.tar.bz2 | tar xjf - -C /var/www/html --strip-components=1 --no-same-owner --no-same-permissions
 
