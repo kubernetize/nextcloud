@@ -14,6 +14,7 @@ RUN phpver=$(php -r 'echo PHP_MAJOR_VERSION . PHP_MINOR_VERSION;') && \
     apk --no-cache add curl tar php${phpver}-pecl-apcu php${phpver}-pecl-imagick php${phpver}-pecl-redis && \
     rm -rf "/etc/php${phpver}/conf.d" && \
     ln -sf /etc/php/conf.d "/etc/php${phpver}/conf.d" && \
+    sed -i -e '/^pm.max_children /s/=.*/= 20/' /etc/php-fpm.conf && \
     mkdir -p /var/www/html && \
     curl -sL https://download.nextcloud.com/server/releases/nextcloud-${NC_VER}.tar.bz2 | tar xjf - -C /var/www/html --strip-components=1 --no-same-owner --no-same-permissions
 
