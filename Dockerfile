@@ -29,4 +29,10 @@ RUN \
     ln -s /data/config config && \
     ln -s /data/apps apps-ext
 
+# Tune PHP settings via environment
+ENV \
+    PHP_MEMORY_LIMIT=512M \
+    PHP_POST_MAX_SIZE=16M \
+    PHP_UPLOAD_MAX_FILESIZE=4M
+
 USER 8080
